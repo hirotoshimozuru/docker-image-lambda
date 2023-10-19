@@ -1,0 +1,12 @@
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.code-workspace
+bin/
+golangci-lint
+vendor
+# Test binary, build with `go test -c`
+*.test
