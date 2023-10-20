@@ -10,7 +10,7 @@ build-local: go/vendor
 	docker build -t lambda-sample1-local -f './sample1/Dockerfile' . --build-arg GO_VERSION=$(GO_VERSION) --target local
 
 start-local:
-	docker run --name lambda-sample1-local -p 9000:8080 --rm lambda-sample1-local /functions/sample1
+	docker run --name lambda-sample1-local -p 9000:8080 --rm lambda-sample1-local /functions/main
 
 stop-local:
 	docker stop lambda-sample1-local

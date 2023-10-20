@@ -3,10 +3,13 @@ FROM golang:1.21.0 AS builder
 ENV ARCH="arm64"
 ENV APPDIR $GOPATH/src/docker-image-lambda
 
-COPY . $APPDIR/
+COPY go.mod go.sum $APPDIR/
+COPY vendor/ $APPDIR/vendor/
+COPY sample1/main.go $APPDIR/
+COPY internal/ $APPDIR/internal/
 WORKDIR $APPDIR
 
-RUN go mod download && GOOS=linux GOARCH=${ARCH} CGO_ENABLED=0 go build -mod=vendor -ldflags "-s -w" -o /functions/sample1 ./sample1/main.go
+RUN --mount=type=cache,target=/root/.cache/go-build GOOS=linux GOARCH=${ARCH} CGO_ENABLED=0 go build -mod=vendor -ldflags "-s -w" -o /functions/main main.go
 
 # aws環境実行用
 FROM gcr.io/distroless/static as aws
