@@ -4,7 +4,7 @@
 ### build
 ```bash
 # local環境用のイメージを作成する
-$ docker build -t lambda-sample1-local -f './sample1/Dockerfile' . --build-arg GO_VERSION=$(GO_VERSION) --target local
+$ docker build -t lambda-sample1-local -f './sample1/Dockerfile' . --build-arg GO_VERSION=1.21.0 --target local
 ```
 
 ### 起動
